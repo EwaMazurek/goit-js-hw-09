@@ -80,18 +80,18 @@ startBtn.addEventListener('click', () => {
   inputElem.disabled = true;
   let convertedTime = convertMs(countDown);
 
-  timerValue[0].textContent = convertedTime.days;
-  timerValue[1].textContent = convertedTime.hours;
-  timerValue[2].textContent = convertedTime.minutes;
-  timerValue[3].textContent = convertedTime.seconds;
+  timerValue[0].textContent = addLeadingZero(convertedTime.days);
+  timerValue[1].textContent = addLeadingZero(convertedTime.hours);
+  timerValue[2].textContent = addLeadingZero(convertedTime.minutes);
+  timerValue[3].textContent = addLeadingZero(convertedTime.seconds);
   countDown -= 1000;
 
   const countDownTimer = setInterval(() => {
     convertedTime = convertMs(countDown);
-    timerValue[0].textContent = convertedTime.days;
-    timerValue[1].textContent = convertedTime.hours;
-    timerValue[2].textContent = convertedTime.minutes;
-    timerValue[3].textContent = convertedTime.seconds;
+    timerValue[0].textContent = addLeadingZero(convertedTime.days);
+    timerValue[1].textContent = addLeadingZero(convertedTime.hours);
+    timerValue[2].textContent = addLeadingZero(convertedTime.minutes);
+    timerValue[3].textContent = addLeadingZero(convertedTime.seconds);
     countDown -= 1000;
     if (countDown <= 0) {
       clearInterval(countDownTimer);
@@ -99,3 +99,7 @@ startBtn.addEventListener('click', () => {
     }
   }, 1000);
 });
+
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
+}
